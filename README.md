@@ -32,7 +32,6 @@ Skills are installed in different locations depending on your environment:
 
 ### 🌐 Claude Web (claude.ai)
 
-**Not Currently Supported**
 Download the skill and compress to zip.  
 Go to settings -> Capabilities -> Click Upload Skill, drag and drop the zipped skill, then enable.
 
