@@ -9,7 +9,7 @@ Skills are modular packages that give Claude specialized knowledge and procedura
 ## Available Skills
 
 ### Product Manager
-**Location:** `product-manager/`  
+**Location:** `product-manager/`
 **Description:** AI Product Manager that conducts discovery interviews, explores codebases, and generates comprehensive PRDs.
 
 **Features:**
@@ -23,6 +23,26 @@ Skills are modular packages that give Claude specialized knowledge and procedura
 - Creating product requirements documents
 - Defining new features
 - Documenting technical specifications
+
+---
+
+### Issue Creator
+**Location:** `issue-creator/`
+**Description:** Creates well-structured development issues from PRDs, feature requests, bug reports, or technical specifications.
+
+**Features:**
+- Converts PRDs and requirements docs into actionable issues
+- Generates BDD-ready acceptance criteria
+- Comprehensive testing requirements (unit, integration, E2E)
+- Intelligent dependency ordering
+- Linear integration (when MCP available)
+- Multiple issue templates (features, bugs, technical tasks, user stories, APIs)
+
+**Use when:**
+- Breaking down PRDs into development tasks
+- Converting requirements into sprint backlog
+- Creating Linear/GitHub issues from documentation
+- Generating task lists with proper dependencies
 
 ---
 
@@ -158,6 +178,14 @@ Skills activate when you use specific phrases or keywords:
 "Help me write a PRD for a notification system"
 "Act as a product manager and define requirements"
 "Create a PRD for user authentication"
+```
+
+**Issue Creator Skill:**
+```
+"Create issues from this PRD"
+"Break down this feature into development tasks"
+"Convert this document to Linear tickets"
+"Generate development issues from these requirements"
 ```
 
 **General Pattern:**
@@ -425,6 +453,11 @@ Skills in this repository are provided as-is for use with Claude. Individual ski
 ---
 
 ## Changelog
+
+### 2024-10-28
+- Added Issue Creator skill v1.0
+- Supports PRD-to-issue conversion with BDD acceptance criteria
+- Includes Linear integration and dependency ordering
 
 ### 2024-10-24
 - Added Product Manager skill v2.0
