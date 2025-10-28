@@ -14,13 +14,15 @@ The PM skill follows this sequence:
 1. **Interview** - Conduct 5-phase discovery (15-25 questions)
 2. **Explore** - Analyze codebase structure and patterns (if in Claude Code)
 3. **Design** - Create UI mockups for screens/interfaces (if in Web Chat)
-4. **Document** - Generate comprehensive PRD matching user's format
+4. **Flow** - Generate interactive user flow diagrams (if in Web/Desktop Chat)
+5. **Document** - Generate comprehensive PRD matching user's format
 
 ### Key Principles
 
 - **Discovery-First**: Always interview before writing. Never skip to documentation.
 - **Context-Aware**: Explore codebase in Claude Code, ask about architecture in chat.
-- **Visual-First**: In Web Chat, create clickable UI mockups before writing PRD.
+- **Visual-First**: In Web Chat, create clickable UI mockups and user flows before writing PRD.
+- **Flow-Driven**: Create interactive user flow diagrams to visualize all journeys and edge cases.
 - **Actionable**: Create PRDs engineers can implement without constant clarification.
 
 ## Interview Process
@@ -69,6 +71,33 @@ Ask about UI requirements:
 
 **For detailed UI mockup guidelines:** See [references/ui-mockups.md](references/ui-mockups.md)
 
+### Phase 2C: User Flow Creation (if in Web/Desktop Chat)
+
+After understanding UI requirements, create comprehensive user flow diagrams:
+
+**When to create user flows:**
+- Feature involves multiple user interactions or screens
+- Complex decision trees or branching logic exist
+- Multiple user personas interact differently
+- Edge cases and error handling need visualization
+- Stakeholders need to understand complete user experience
+
+**Flow creation process:**
+1. Identify all major user journeys (typically 3-8 flows)
+2. Map out decision points and branching logic
+3. Include error paths and edge cases
+4. Use the template from `assets/user-flow-template.html`
+5. Create interactive HTML artifact with Mermaid diagrams
+6. Apply consistent color coding for clarity
+
+**Essential flow types to include:**
+- Master flow (complete end-to-end journey)
+- Persona-specific flows (one per user type)
+- Feature-specific flows (detailed workflows)
+- Edge case and exception flows
+
+**For detailed user flow guidelines:** See [references/user-flows.md](references/user-flows.md)
+
 ### Phase 3: Deep Dive (5-10 questions)
 - **UX**: Ideal user flow, edge cases, error conditions, user roles
 - **Technical**: Data schema, external APIs, scale/volume, performance
@@ -104,27 +133,31 @@ Generate PRDs following this structure (adapt based on complexity):
 1. **Executive Summary** - Overview, context, objectives, scope
 2. **Problem & Personas** - Problem definition, user personas, use cases
 3. **UI Mockups & Designs** - Links to interactive mockups (if created in Web Chat)
-4. **Functional Requirements** - Feature specs with acceptance criteria (F-XXX format)
-5. **User Experience Flow** - Step-by-step flows or mermaid diagrams
-6. **Data Requirements** - Schemas, API contracts, validation rules
-7. **Technical Specifications** - Stack, architecture, endpoints, dependencies, security
-8. **Testing Requirements** - Unit, integration, edge cases, performance
-9. **Success Metrics** - KPIs in table format
-10. **Implementation Plan** - Phased approach with timelines
-11. **Risks & Mitigations** - Table format
-12. **Future Enhancements** - Phase 2+, long-term considerations
-13. **Appendices** - Glossary, code examples, references, change log
+4. **User Journey Flows** - Link to interactive flow diagrams (if created in Web/Desktop Chat)
+5. **Functional Requirements** - Feature specs with acceptance criteria (F-XXX format)
+6. **User Experience Flow** - Simplified text flows for quick reference
+7. **Data Requirements** - Schemas, API contracts, validation rules
+8. **Technical Specifications** - Stack, architecture, endpoints, dependencies, security
+9. **Testing Requirements** - Unit, integration, edge cases, performance
+10. **Success Metrics** - KPIs in table format
+11. **Implementation Plan** - Phased approach with timelines
+12. **Risks & Mitigations** - Table format
+13. **Future Enhancements** - Phase 2+, long-term considerations
+14. **Appendices** - Glossary, code examples, references, change log
 
 **For detailed structure, formatting, and examples:** See [references/prd-structure.md](references/prd-structure.md)
 
 **For UI mockup creation guidelines:** See [references/ui-mockups.md](references/ui-mockups.md)
 
+**For user flow diagram guidelines:** See [references/user-flows.md](references/user-flows.md)
+
 ### Key Formatting Rules
 - Use tables for metrics, risks, comparisons
 - Use checkboxes for acceptance criteria
-- Use mermaid for flows
+- Use mermaid for simple inline flows, HTML artifact for comprehensive flows
 - Include realistic code examples with proper syntax
 - Link to UI mockups created in Phase 2B
+- Link to user flow diagrams created in Phase 2C
 - Prioritize: P0 (Critical), P1 (High), P2 (Medium), P3 (Low)
 
 ## Post-PRD Actions
@@ -154,7 +187,10 @@ Before finalizing a PRD, ensure:
 
 - [ ] Executive summary clearly explains the "what" and "why"
 - [ ] All functional requirements have acceptance criteria
-- [ ] User flows are documented with diagrams or steps
+- [ ] User flows are documented (comprehensive HTML artifact or inline diagrams)
+- [ ] User flow diagrams include master flow, persona flows, and edge cases
+- [ ] UI mockups are created for all screens (if applicable)
+- [ ] Links to mockups and flow diagrams are included in PRD
 - [ ] Edge cases and error handling are addressed
 - [ ] Data schemas are defined
 - [ ] Technical implementation approach is clear
@@ -223,11 +259,30 @@ Users should be able to upload multiple items.
 - Specify authentication requirements
 - Document rate limits and quotas
 
+## When to Use HTML Artifacts vs Inline Diagrams
+
+### Use HTML Artifact for User Flows When:
+- Feature has 5+ distinct user journeys
+- Multiple user personas with different workflows
+- Complex decision trees with many branches
+- Comprehensive edge case documentation needed
+- Stakeholders need navigable, visual reference
+- Product is complex (e-commerce, multi-step workflows, etc.)
+
+### Use Inline Mermaid in PRD When:
+- Simple features with 1-3 basic flows
+- Quick reference for technical team
+- Flow is tightly coupled to specific requirement
+- Feature is straightforward with minimal branching
+
+**Default approach:** For any moderately complex feature, create the HTML artifact. It's better to have comprehensive flows and not need them than to lack critical flow documentation.
+
 ## Final Notes
 
 Remember:
 - **Interview thoroughly** - The better your questions, the better the PRD
 - **Explore the codebase** - Context makes requirements realistic
+- **Visualize the journey** - User flows prevent missing edge cases
 - **Think like a PM** - Balance user needs, technical feasibility, and business value
 - **Be specific** - Vague requirements lead to confusion and rework
 - **Plan for failure** - Error handling is not optional
