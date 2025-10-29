@@ -16,6 +16,7 @@ Skills are modular packages that give Claude specialized knowledge and procedura
 - 5-phase discovery interview process
 - Codebase exploration (in VS Code)
 - Interactive UI mockup creation (in Web/Desktop)
+- User flow diagram generation with Mermaid.js
 - Comprehensive PRD generation
 - Multi-state component examples
 
@@ -23,6 +24,7 @@ Skills are modular packages that give Claude specialized knowledge and procedura
 - Creating product requirements documents
 - Defining new features
 - Documenting technical specifications
+- Visualizing user journeys and workflows
 
 ---
 
@@ -43,6 +45,61 @@ Skills are modular packages that give Claude specialized knowledge and procedura
 - Converting requirements into sprint backlog
 - Creating Linear/GitHub issues from documentation
 - Generating task lists with proper dependencies
+
+---
+
+### Issue Review
+**Location:** `issue-review/`
+**Description:** Reviews Linear/GitHub issues for technical accuracy, codebase alignment, and completeness before implementation.
+
+**Features:**
+- Cross-references issues against actual codebase structure
+- Validates database models, APIs, and service references
+- Identifies missing edge cases and error handling
+- AI-driven time estimation for implementation
+- Suggests issue splitting when scope is too large
+- Recommends issue ordering based on dependencies
+- Checks for architectural concerns and security implications
+
+**Use when:**
+- Reviewing issue specifications before implementation (especially in Claude Code)
+- Validating technical accuracy against codebase
+- Assessing if an issue should be split
+- Estimating AI implementation time
+- Checking for missing edge cases or details
+
+---
+
+## Skill Workflow
+
+These skills work together to support the complete product development lifecycle:
+
+```
+┌─────────────────────┐
+│ Product Manager     │  1. Conduct discovery & create PRD
+│ - Interview users   │     with UI mockups and user flows
+│ - Create PRD        │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ Issue Creator       │  2. Break down PRD into
+│ - Generate issues   │     actionable development tasks
+│ - Add criteria      │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ Issue Review        │  3. Validate issues against codebase
+│ - Check accuracy    │     before implementation
+│ - Estimate time     │
+└─────────────────────┘
+```
+
+**Example workflow:**
+1. Use **Product Manager** to create a PRD for "Multi-channel listing feature"
+2. Use **Issue Creator** to convert the PRD into 15 development issues
+3. Use **Issue Review** to validate each issue against your codebase before starting work
 
 ---
 
@@ -186,6 +243,14 @@ Skills activate when you use specific phrases or keywords:
 "Break down this feature into development tasks"
 "Convert this document to Linear tickets"
 "Generate development issues from these requirements"
+```
+
+**Issue Review Skill:**
+```
+"Review this issue against the codebase"
+"Check if this ticket makes sense"
+"Does this issue have any technical problems?"
+"Validate this issue before I start implementing"
 ```
 
 **General Pattern:**
@@ -453,6 +518,12 @@ Skills in this repository are provided as-is for use with Claude. Individual ski
 ---
 
 ## Changelog
+
+### 2024-10-29
+- Added Issue Review skill v1.0
+- Reviews issues for technical accuracy and codebase alignment
+- AI-driven time estimation and scope assessment
+- Updated Product Manager skill v2.1 with user flow diagram generation
 
 ### 2024-10-28
 - Added Issue Creator skill v1.0
