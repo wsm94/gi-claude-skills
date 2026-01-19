@@ -70,6 +70,44 @@ Skills are modular packages that give Claude specialized knowledge and procedura
 
 ---
 
+### AI Spec
+**Location:** `ai-spec/`
+**Description:** Creates specifications for AI-assisted development that enable test-driven, incremental implementation.
+
+**Features:**
+- Three-tier structure: SPECIFY (what/why), PLAN (how), TASKS (build steps)
+- Gherkin acceptance criteria for clear test definitions
+- API contracts and data model design
+- Incremental, testable task breakdown
+- Templates for full and minimal specifications
+
+**Use when:**
+- Building new features, API endpoints, or services with AI coding assistants
+- Planning a feature that needs clear specification
+- Creating test-driven development specs
+- Breaking down complex implementations into testable steps
+
+---
+
+### Context7 Docs
+**Location:** `context7-docs/`
+**Description:** Delegates documentation lookups to a specialized sub-agent to manage context window size.
+
+**Features:**
+- Spawns sub-agent to search Context7 for library documentation
+- Automatic web search fallback if library not in Context7
+- Returns focused summaries with code examples
+- Keeps main conversation context lean
+- Model selection guidance (haiku default, sonnet for complex queries)
+
+**Use when:**
+- Looking up documentation for any programming library or framework
+- Finding code examples for specific functionality
+- Researching API usage patterns
+- Getting current documentation beyond training data cutoff
+
+---
+
 ## Skill Workflow
 
 These skills work together to support the complete product development lifecycle:
@@ -93,13 +131,24 @@ These skills work together to support the complete product development lifecycle
 │ Issue Review        │  3. Validate issues against codebase
 │ - Check accuracy    │     before implementation
 │ - Estimate time     │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ AI Spec             │  4. Create detailed technical specs
+│ - Define tests      │     for AI-assisted implementation
+│ - Plan tasks        │
 └─────────────────────┘
 ```
+
+**Supporting skills:**
+- **Context7 Docs** — Use anytime during development to look up library documentation without bloating context
 
 **Example workflow:**
 1. Use **Product Manager** to create a PRD for "Multi-channel listing feature"
 2. Use **Issue Creator** to convert the PRD into 15 development issues
 3. Use **Issue Review** to validate each issue against your codebase before starting work
+4. Use **AI Spec** to create detailed specifications for complex issues before implementation
 
 ---
 
@@ -251,6 +300,22 @@ Skills activate when you use specific phrases or keywords:
 "Check if this ticket makes sense"
 "Does this issue have any technical problems?"
 "Validate this issue before I start implementing"
+```
+
+**AI Spec Skill:**
+```
+"Write a spec for the authentication feature"
+"Create a specification for this API endpoint"
+"Plan out this feature with test-driven tasks"
+"Break down this implementation into testable steps"
+```
+
+**Context7 Docs Skill:**
+```
+"Look up the FastAPI authentication docs"
+"How do I use React useEffect cleanup?"
+"Find documentation for Prisma relations"
+"What's the API for lodash debounce?"
 ```
 
 **General Pattern:**
@@ -518,6 +583,14 @@ Skills in this repository are provided as-is for use with Claude. Individual ski
 ---
 
 ## Changelog
+
+### 2025-01-19
+- Added Context7 Docs skill v1.0
+- Delegates documentation lookups to sub-agent for context management
+- Supports Context7 with web search fallback
+- Added AI Spec skill v1.0
+- Three-tier specification structure (SPECIFY/PLAN/TASKS)
+- Test-driven development workflow for AI assistants
 
 ### 2024-10-29
 - Added Issue Review skill v1.0
