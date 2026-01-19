@@ -60,7 +60,7 @@ grep -r "wasteDetails" --include="*.model.ts"
 - **Verify conventions**: Does the issue follow project naming conventions?
 - **Validate structure**: Are new files going in the right directories?
 
-### Step 3: Identify Technical Issues
+### Step 3: Identify Technical Issues & Resolve Ambiguities
 
 Look for these common problems:
 
@@ -83,6 +83,61 @@ Look for these common problems:
 - Performance implications not addressed
 - Scaling considerations missing
 - Security implications overlooked
+
+#### Intelligent Question Resolution
+
+When you encounter ambiguities or missing information:
+
+**FIRST: Check if you can answer from the codebase**
+```bash
+# Look for existing patterns
+grep -r "similar_pattern" --include="*.ts"
+find . -name "*related_feature*"
+
+# Check existing implementations
+# Can you infer the answer from how similar features work?
+```
+
+**Decision Framework:**
+
+1. **Can answer from codebase** → Include answer in review with confidence note
+   - Example: "Based on the UserModel implementation, this should follow the same pattern..."
+   
+2. **Multiple valid approaches exist** → Ask user for preference
+   - Example: "Should this follow the pattern from FeatureA (transaction-based) or FeatureB (event-based)?"
+
+3. **Business logic decision** → Ask user
+   - Example: "When a user cancels mid-upload, should we: a) delete partial data, or b) save as draft?"
+
+4. **Technical uncertainty that affects architecture** → Ask user
+   - Example: "This endpoint will handle 1000+ req/sec. Should we add caching layer now or later?"
+
+**Questioning Protocol:**
+
+When you must ask questions:
+
+- **Ask ONE question at a time** - Wait for answer before asking next
+- **Provide context** - Explain why you're asking and how it affects the issue
+- **Offer suggestions** - Based on codebase patterns when possible
+- **Track answers** - Keep list of resolved questions to update issue at the end
+
+**Format for questions:**
+```markdown
+❓ **Question [N/M]**: [Clear, specific question]
+
+**Context**: Why this matters for the implementation
+
+**Options** (based on codebase analysis):
+a) [Option] - Pros: ... Cons: ...
+b) [Option] - Pros: ... Cons: ...
+
+**Recommendation**: [Your suggestion based on existing patterns]
+```
+
+**After all questions answered:**
+- Update the issue with resolved information
+- Document decisions made
+- Note any assumptions for future reference
 
 ### Step 4: Review Edge Cases
 
@@ -194,6 +249,15 @@ Provide review in this structure:
 - Note clear acceptance criteria
 - Highlight good edge case coverage
 
+### 🔍 Codebase Analysis
+List what you discovered from examining the code:
+```markdown
+**[Component]**: What you found
+- Existing pattern: [Description]
+- Relevant files: [Paths]
+- Recommendation: How issue should align
+```
+
 ### ⚠️ Technical Issues Found
 
 For each issue:
@@ -204,6 +268,28 @@ For each issue:
 - **Recommendation**: How to fix
 - **Files to check**: Specific files to review
 ```
+
+### ❓ Questions Requiring Clarification
+
+**IMPORTANT**: Ask these ONE AT A TIME, waiting for user response between each.
+
+For each question:
+```markdown
+**Question [N/M]**: [Specific question]
+
+**Context**: [Why this matters]
+
+**Options** (based on codebase):
+a) [Option] - [Trade-offs]
+b) [Option] - [Trade-offs]
+
+**Recommendation**: [Your suggestion from existing patterns]
+```
+
+After user answers a question:
+- Thank them for the answer
+- Ask the next question (if any remain)
+- Once all answered, proceed to update the issue
 
 ### 🔍 Missing Edge Cases
 
@@ -246,13 +332,16 @@ If multiple issues, recommend sequence:
 2. **[Issue name]** - [Rationale]
 ```
 
-### 📝 Recommended Updates
+### 📝 Updated Issue Text
 
-Provide specific text additions for:
-- Acceptance criteria additions
-- Technical notes to add
-- Dependencies to document
-- Testing requirements to specify
+**After all questions answered**, provide the complete updated issue text with:
+- Resolved ambiguities documented
+- Answers integrated into appropriate sections
+- Decisions documented with rationale
+- New acceptance criteria added
+- Technical notes enhanced
+- Dependencies clarified
+- Testing requirements expanded
 
 ## Bundled Resources
 
@@ -260,6 +349,7 @@ Provide specific text additions for:
 
 - `references/review-checklist.md` - Comprehensive checklist for different issue types
 - `references/common-issues.md` - Patterns of frequently missed items
-- `references/ai-time-estimation.md` - Guide for estimating AI implementation time (load when estimating complex tasks)
+- `references/ai-time-estimation.md` - Guide for estimating AI implementation time
+- `references/questioning-strategy.md` - When to ask vs when to answer from codebase (load when you have questions)
 
 Load these references when reviewing complex issues or when specific issue types need detailed checking.
