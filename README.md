@@ -108,6 +108,25 @@ Skills are modular packages that give Claude specialized knowledge and procedura
 
 ---
 
+### Diagram
+**Location:** `diagram-skill/`
+**Description:** Round-trip workflow for exporting Mermaid diagrams to Excalidraw for visual editing, importing them back, and cleaning up artifacts.
+
+**Features:**
+- `/diagram export` — Convert Mermaid code blocks to `.excalidraw` files for visual editing
+- `/diagram import` — Convert edited `.excalidraw` files back to Mermaid and update source markdown
+- `/diagram cleanup` — Find and delete temporary `.excalidraw` workshop artifacts
+- Post-processing to restore subgraphs, styles, and node IDs lost during conversion
+- Round-trip fidelity tracking with known limitations documented
+
+**Use when:**
+- Visually editing Mermaid diagrams in Excalidraw
+- Running diagram workshops where visual drag-and-drop editing is needed
+- Converting between Mermaid and Excalidraw formats
+- Cleaning up `.excalidraw` files after re-importing to Mermaid
+
+---
+
 ## Skill Workflow
 
 These skills work together to support the complete product development lifecycle:
@@ -143,6 +162,7 @@ These skills work together to support the complete product development lifecycle
 
 **Supporting skills:**
 - **Context7 Docs** — Use anytime during development to look up library documentation without bloating context
+- **Diagram** — Export Mermaid diagrams to Excalidraw for visual editing workshops, then import back
 
 **Example workflow:**
 1. Use **Product Manager** to create a PRD for "Multi-channel listing feature"
@@ -316,6 +336,13 @@ Skills activate when you use specific phrases or keywords:
 "How do I use React useEffect cleanup?"
 "Find documentation for Prisma relations"
 "What's the API for lodash debounce?"
+```
+
+**Diagram Skill:**
+```
+"/diagram export" or "Export this diagram to Excalidraw"
+"/diagram import" or "Convert this Excalidraw back to Mermaid"
+"/diagram cleanup" or "Clean up workshop files"
 ```
 
 **General Pattern:**
@@ -583,6 +610,12 @@ Skills in this repository are provided as-is for use with Claude. Individual ski
 ---
 
 ## Changelog
+
+### 2025-01-29
+- Added Diagram skill v1.0
+- Mermaid to Excalidraw export via Playwright automation
+- Excalidraw to Mermaid import with post-processing to restore subgraphs and styles
+- Cleanup command for removing temporary `.excalidraw` workshop artifacts
 
 ### 2025-01-19
 - Added Context7 Docs skill v1.0
