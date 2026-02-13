@@ -127,6 +127,27 @@ Skills are modular packages that give Claude specialized knowledge and procedura
 
 ---
 
+### Docs Agent
+**Location:** `docs-agent/`
+**Description:** Automated documentation generator and query system that analyzes your codebase and maintains a comprehensive `docs/` directory.
+
+**Features:**
+- `/update-docs` — Analyze codebase and generate/update documentation (architecture, API reference, database, conventions, data flow)
+- `/docs` — Query existing documentation with three modes: section retrieval, search queries, and summaries
+- Incremental updates — tracks changes via `.last-update` with commit hash, only regenerates affected sections
+- Mermaid diagrams for architecture and data flow visualization
+- Monorepo-aware — generates per-app documentation subdirectories
+- `--full`, `--section <name>`, and `--dry-run` flags for update control
+
+**Use when:**
+- Starting work on an unfamiliar codebase and need orientation
+- Generating comprehensive project documentation from scratch
+- Keeping docs in sync after significant code changes
+- Looking up API endpoints, database schema, or architectural patterns
+- Onboarding new team members to a project
+
+---
+
 ## Skill Workflow
 
 These skills work together to support the complete product development lifecycle:
@@ -163,6 +184,7 @@ These skills work together to support the complete product development lifecycle
 **Supporting skills:**
 - **Context7 Docs** — Use anytime during development to look up library documentation without bloating context
 - **Diagram** — Export Mermaid diagrams to Excalidraw for visual editing workshops, then import back
+- **Docs Agent** — Generate and query comprehensive project documentation from your codebase
 
 **Example workflow:**
 1. Use **Product Manager** to create a PRD for "Multi-channel listing feature"
@@ -610,6 +632,14 @@ Skills in this repository are provided as-is for use with Claude. Individual ski
 ---
 
 ## Changelog
+
+### 2026-02-13
+- Added Docs Agent skill v1.0
+- Automated codebase documentation generation into `docs/` directory
+- `/update-docs` command with incremental updates, `--full`, `--section`, and `--dry-run` flags
+- `/docs` command with section retrieval, search query, and summary modes
+- Monorepo-aware with per-app documentation subdirectories
+- Change tracking via `.last-update` commit hash for incremental regeneration
 
 ### 2025-01-29
 - Added Diagram skill v1.0
