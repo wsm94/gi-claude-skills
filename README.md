@@ -148,6 +148,26 @@ Skills are modular packages that give Claude specialized knowledge and procedura
 
 ---
 
+### Write Changelog
+**Location:** `write-changelog/`
+**Description:** Generates versioned, marketing-friendly release notes from git history with semver tagging and sensitivity filtering.
+
+**Features:**
+- Analyzes git diff since last semver tag to determine appropriate version bump
+- Writes public-facing, categorized release notes (New Features, Improvements, Bug Fixes, Security, Performance)
+- Sensitivity filtering — strips file paths, function names, env vars, database details, and ticket numbers from output
+- Creates annotated git tags and maintains `changelog/CHANGELOG.md`
+- Handles first releases, monorepos, and mixed commit styles
+- User confirmation before version bump and never auto-pushes
+
+**Use when:**
+- Creating release notes after merging to main
+- Tagging a new version of your project
+- Generating a public-facing changelog from developer commit history
+- Need marketing-friendly release notes without leaking implementation details
+
+---
+
 ## Skill Workflow
 
 These skills work together to support the complete product development lifecycle:
@@ -185,6 +205,7 @@ These skills work together to support the complete product development lifecycle
 - **Context7 Docs** — Use anytime during development to look up library documentation without bloating context
 - **Diagram** — Export Mermaid diagrams to Excalidraw for visual editing workshops, then import back
 - **Docs Agent** — Generate and query comprehensive project documentation from your codebase
+- **Write Changelog** — Generate public-facing release notes from git history with semver tagging
 
 **Example workflow:**
 1. Use **Product Manager** to create a PRD for "Multi-channel listing feature"
@@ -632,6 +653,13 @@ Skills in this repository are provided as-is for use with Claude. Individual ski
 ---
 
 ## Changelog
+
+### 2026-02-25
+- Added Write Changelog skill v1.0
+- Generates versioned, marketing-friendly release notes from git history
+- Sensitivity filtering to strip internal implementation details from public output
+- Semver bump determination with user confirmation
+- Annotated git tag creation and `changelog/CHANGELOG.md` management
 
 ### 2026-02-13
 - Added Docs Agent skill v1.0
