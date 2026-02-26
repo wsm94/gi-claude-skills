@@ -168,6 +168,29 @@ Skills are modular packages that give Claude specialized knowledge and procedura
 
 ---
 
+### WordPress to Sanity/Astro Migration
+**Location:** `wp-to-sanity-astro/`
+**Description:** Migrate WordPress blogs to a Sanity CMS + Astro + Vercel stack with content migration, page templates, and URL redirect configuration.
+
+**Features:**
+- 4-phase migration workflow (Content Migration, Sanity Schema, Astro Pages, URL Redirects)
+- WordPress XML export parsing with Gutenberg HTML to Portable Text conversion
+- Featured image resolution and Sanity asset upload
+- Idempotent migration script with duplicate detection
+- Astro blog listing, post pages, and RSS feed generation
+- Three-layer redirect strategy (vercel.json, root middleware, DNS) for SEO preservation
+- Battle-tested Vercel subdomain redirect solution using root `middleware.ts`
+- Comprehensive pitfalls reference from production migrations
+
+**Use when:**
+- Migrating a WordPress blog to Sanity CMS
+- Building Astro blog pages with Portable Text rendering
+- Configuring Vercel redirects for WordPress URL preservation
+- Processing WordPress XML exports
+- Converting Gutenberg HTML to Sanity Portable Text
+
+---
+
 ### Write Changelog
 **Location:** `write-changelog/`
 **Description:** Generates versioned, marketing-friendly release notes from git history with semver tagging and sensitivity filtering.
@@ -415,6 +438,14 @@ Skills activate when you use specific phrases or keywords:
 "How do I use React useEffect cleanup?"
 "Find documentation for Prisma relations"
 "What's the API for lodash debounce?"
+```
+
+**WordPress to Sanity/Astro Skill:**
+```
+"Migrate my WordPress blog to Sanity"
+"Import WordPress XML export into Sanity"
+"Help me move from WordPress to Astro"
+"Set up blog subdomain redirects on Vercel"
 ```
 
 **Diagram Skill:**
@@ -691,6 +722,10 @@ Skills in this repository are provided as-is for use with Claude. Individual ski
 ## Changelog
 
 ### 2026-02-26
+- Added WordPress to Sanity/Astro Migration skill v1.0
+- 4-phase migration workflow: content migration, Sanity schema, Astro pages, URL redirects
+- Bundled migration script, Sanity schema reference, and production pitfalls guide
+- Battle-tested Vercel subdomain redirect solution using root middleware
 - Added Ideation Expertise skill v1.0
 - Structured 5-phase interview process for early-stage brainstorming
 - Produces Ideation Documents ready for AgentFlow Discovery phase
