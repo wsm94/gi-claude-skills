@@ -8,6 +8,26 @@ Skills are modular packages that give Claude specialized knowledge and procedura
 
 ## Available Skills
 
+### Ideation Expertise
+**Location:** `af-ideation-expertise/`
+**Description:** Facilitates structured ideation and early-stage brainstorming for new projects or products, producing Ideation Documents ready for AgentFlow's Discovery phase.
+
+**Features:**
+- Guided 5-phase interview process (Problem & Opportunity, Users & Workflows, Business Context, Features & Prioritisation, Risks & Unknowns)
+- Conversational discovery — asks 3-5 questions at a time rather than handing over a blank template
+- Produces a comprehensive Ideation Document from a bundled template
+- Stays pre-technical — captures *what* and *why*, leaving *how* for Discovery
+- Supports iterative rounds with versioned changelogs
+- Handles partial sessions gracefully
+
+**Use when:**
+- Brainstorming a new product or feature idea
+- Exploring a problem space before writing a PRD
+- Creating an ideation document for AgentFlow's Discovery phase
+- Running structured ideation sessions with stakeholders
+
+---
+
 ### Product Manager
 **Location:** `product-manager/`
 **Description:** AI Product Manager that conducts discovery interviews, explores codebases, and generates comprehensive PRDs.
@@ -174,6 +194,13 @@ These skills work together to support the complete product development lifecycle
 
 ```
 ┌─────────────────────┐
+│ Ideation Expertise  │  0. Brainstorm & explore the problem
+│ - Explore problem   │     space before formal requirements
+│ - Capture ideas     │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
 │ Product Manager     │  1. Conduct discovery & create PRD
 │ - Interview users   │     with UI mockups and user flows
 │ - Create PRD        │
@@ -208,10 +235,11 @@ These skills work together to support the complete product development lifecycle
 - **Write Changelog** — Generate public-facing release notes from git history with semver tagging
 
 **Example workflow:**
-1. Use **Product Manager** to create a PRD for "Multi-channel listing feature"
-2. Use **Issue Creator** to convert the PRD into 15 development issues
-3. Use **Issue Review** to validate each issue against your codebase before starting work
-4. Use **AI Spec** to create detailed specifications for complex issues before implementation
+1. Use **Ideation Expertise** to brainstorm and explore the problem space for "Multi-channel listing"
+2. Use **Product Manager** to take the ideation document and create a full PRD
+3. Use **Issue Creator** to convert the PRD into 15 development issues
+4. Use **Issue Review** to validate each issue against your codebase before starting work
+5. Use **AI Spec** to create detailed specifications for complex issues before implementation
 
 ---
 
@@ -341,6 +369,14 @@ tar -xzf "C:\Users\YourUsername\Downloads\product-manager-skill-v2.tar.gz"
 ### Triggering a Skill
 
 Skills activate when you use specific phrases or keywords:
+
+**Ideation Expertise Skill:**
+```
+"Help me ideate on a new product idea"
+"Brainstorm this idea with me"
+"Create an ideation document for a marketplace feature"
+"I have a product idea — help me explore the problem space"
+```
 
 **Product Manager Skill:**
 ```
@@ -653,6 +689,13 @@ Skills in this repository are provided as-is for use with Claude. Individual ski
 ---
 
 ## Changelog
+
+### 2026-02-26
+- Added Ideation Expertise skill v1.0
+- Structured 5-phase interview process for early-stage brainstorming
+- Produces Ideation Documents ready for AgentFlow Discovery phase
+- Bundled ideation template in assets
+- Updated workflow diagram to include ideation as step 0
 
 ### 2026-02-25
 - Added Write Changelog skill v1.0
